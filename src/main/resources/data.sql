@@ -35,3 +35,10 @@ insert into measurement (zone_id, recorded_by_id, parameter, measured_value, mea
     (3, 2, 'OXYGEN_PERCENT',   0.40, '2026-11-11 09:30:00', false),
     (2, 3, 'TEMPERATURE_C',  -80.00, '2026-11-12 03:15:00', true);
 
+-- ===== LAB 03 · maintenance_ticket =====
+-- measurement_id jest opcjonalne i unikalne (jeden-do-jednego)
+insert into maintenance_ticket (installation_id, user_account_id, measurement_id, title, status, opened_at) values
+    (2, 1, null, 'Spadek wydajności emitera GE-01',      'OPEN',     '2026-11-09 10:00:00'),
+    (1, 2, 1,    'Wahania ciśnienia przy OX-03',         'ASSIGNED', '2026-11-10 08:30:00'),
+    (3, 3, 3,    'Anomalia temperatury przy szklarni',   'RESOLVED', '2026-11-12 04:00:00');
+
