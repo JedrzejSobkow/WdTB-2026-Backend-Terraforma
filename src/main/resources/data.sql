@@ -42,3 +42,8 @@ insert into maintenance_ticket (installation_id, user_account_id, measurement_id
     (1, 2, 1,    'Wahania ciśnienia przy OX-03',         'ASSIGNED', '2026-11-10 08:30:00'),
     (3, 3, 3,    'Anomalia temperatury przy szklarni',   'RESOLVED', '2026-11-12 04:00:00');
 
+-- ===== LAB 03 · project_installation (wiele-do-wielu: projekt <-> instalacja) =====
+insert into project_installation (project_id, installation_id, allocated_power_kw, allocated_from, allocated_to, energy_used_kwh) values
+    (1, 1, 1200.00, '2026-06-01 00:00:00', '2027-12-31 23:59:00', 350000.00),
+    (1, 2,  900.00, '2026-06-01 00:00:00', null,                  120000.00),
+    (2, 3,  500.00, '2027-01-01 00:00:00', '2028-06-30 23:59:00', null);

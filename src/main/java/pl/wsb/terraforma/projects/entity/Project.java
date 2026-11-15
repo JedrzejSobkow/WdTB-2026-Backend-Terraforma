@@ -11,6 +11,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import pl.wsb.terraforma.account.domain.UserAccount;
@@ -18,6 +19,8 @@ import pl.wsb.terraforma.territory.entity.Zone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "project")
@@ -51,6 +54,9 @@ public class Project {
     @Column(name = "status", nullable = false, length = 30)
     private ProjectStatus status;
 
+    @OneToMany(mappedBy = "project")
+    private List<ProjectInstallation> allocations = new ArrayList<>();
+
     protected Project() {
     }
 
@@ -68,6 +74,7 @@ public class Project {
     public Long getId() { return id; }
     public Zone getZone() { return zone; }
     public UserAccount getManager() { return manager; }
+    public List<ProjectInstallation> getAllocations() { return allocations; }
     public String getName() { return name; }
     public ProjectTarget getTarget() { return target; }
     public BigDecimal getEnergyBudgetKwh() { return energyBudgetKwh; }
