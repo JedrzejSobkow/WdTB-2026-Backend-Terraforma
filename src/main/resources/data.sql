@@ -18,10 +18,10 @@ insert into zone (name, region, elevation_m, area_km2, status) values
     ('Krater Gale',     'okolice równika',    -4400, 154.00,     'IN_TRANSFORMATION');
 
 -- ===== LAB 02 · installation =====
-insert into installation (name, type, max_power_kw, commissioned_at, status) values
-    ('OX-03', 'OXYGEN_GENERATOR', 1500.00, '2026-03-12', 'ACTIVE'),
-    ('GE-01', 'GAS_EMITTER',      2200.00, '2025-11-01', 'DEGRADED'),
-    ('GH-01', 'GREENHOUSE',        800.00, null,         'BUILDING');
+insert into installation (zone_id, name, type, max_power_kw, commissioned_at, status) values
+    (1, 'OX-03', 'OXYGEN_GENERATOR', 1500.00, '2026-03-12', 'ACTIVE'),
+    (3, 'GE-01', 'GAS_EMITTER',      2200.00, '2025-11-01', 'DEGRADED'),
+    (2, 'GH-01', 'GREENHOUSE',        800.00, null,         'BUILDING');
 
 -- ===== LAB 02 · project =====
 insert into project (name, target_parameter, baseline_value, target_value, energy_budget_kwh, deadline, status) values

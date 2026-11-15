@@ -6,8 +6,13 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import pl.wsb.terraforma.territory.entity.Zone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,6 +24,10 @@ public class Installation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "zone_id", nullable = false)
+    private Zone zone;
 
     @Column(name = "name", nullable = false, unique = true, length = 40)
     private String name;
@@ -40,8 +49,9 @@ public class Installation {
     protected Installation() {
     }
 
-    public Installation(String name, InstallationType type, BigDecimal maxPowerKw,
+    public Installation(Zone zone, String name, InstallationType type, BigDecimal maxPowerKw,
                         LocalDate commissionedAt, InstallationStatus status) {
+        this.zone = zone;
         this.name = name;
         this.type = type;
         this.maxPowerKw = maxPowerKw;
@@ -50,6 +60,7 @@ public class Installation {
     }
 
     public Long getId() { return id; }
+    public Zone getZone() { return zone; }
     public String getName() { return name; }
     public InstallationType getType() { return type; }
     public BigDecimal getMaxPowerKw() { return maxPowerKw; }
