@@ -7,9 +7,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import pl.wsb.terraforma.infrastructure.entity.Installation;
+
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "zone")
@@ -35,6 +40,9 @@ public class Zone {
     @Column(name = "status", nullable = false, length = 30)
     private ZoneStatus status;
 
+    @OneToMany(mappedBy = "zone")
+    private List<Installation> installations = new ArrayList<>();
+
     protected Zone() {
     }
 
@@ -52,4 +60,5 @@ public class Zone {
     public Integer getElevationM() { return elevationM; }
     public BigDecimal getAreaKm2() { return areaKm2; }
     public ZoneStatus getStatus() { return status; }
+    public List<Installation> getInstallations() { return installations; }
 }
