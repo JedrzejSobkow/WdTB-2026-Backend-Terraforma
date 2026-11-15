@@ -28,3 +28,10 @@ insert into project (zone_id, manager_id, name, target_parameter, baseline_value
     (1, 1, 'Podniesienie ciśnienia w Dolinie Marinera do 1000 Pa', 'PRESSURE_PA',    600,   1000, 5000000.00, '2027-12-31', 'IN_PROGRESS'),
     (3, 2, 'Zwiększenie udziału O2 w Kraterze Gale do 5%',          'OXYGEN_PERCENT',   0.15,  5, 2500000.00, '2028-06-30', 'PROPOSED'),
     (2, 3, 'Ogrzanie Równiny Utopia o 10°C',                        'TEMPERATURE_C',  -63,   -53, 8000000.00, '2026-12-31', 'ABORTED');
+-- ===== LAB 03 · measurement =====
+-- zone_id: numer strefy, recorded_by_id: numer konta z user_account
+insert into measurement (zone_id, recorded_by_id, parameter, measured_value, measured_at, is_anomaly) values
+    (1, 1, 'PRESSURE_PA',    640.00, '2026-11-10 08:00:00', false),
+    (3, 2, 'OXYGEN_PERCENT',   0.40, '2026-11-11 09:30:00', false),
+    (2, 3, 'TEMPERATURE_C',  -80.00, '2026-11-12 03:15:00', true);
+
