@@ -24,7 +24,7 @@ insert into installation (zone_id, name, type, max_power_kw, commissioned_at, st
     (2, 'GH-01', 'GREENHOUSE',        800.00, null,         'BUILDING');
 
 -- ===== LAB 02 · project =====
-insert into project (name, target_parameter, baseline_value, target_value, energy_budget_kwh, deadline, status) values
-    ('Podniesienie ciśnienia w Dolinie Marinera do 1000 Pa', 'PRESSURE_PA',    600,   1000, 5000000.00, '2027-12-31', 'IN_PROGRESS'),
-    ('Zwiększenie udziału O2 w Kraterze Gale do 5%',          'OXYGEN_PERCENT',   0.15,  5, 2500000.00, '2028-06-30', 'PROPOSED'),
-    ('Ogrzanie Równiny Utopia o 10°C',                        'TEMPERATURE_C',  -63,   -53, 8000000.00, '2026-12-31', 'ABORTED');
+insert into project (zone_id, manager_id, name, target_parameter, baseline_value, target_value, energy_budget_kwh, deadline, status) values
+    (1, 1, 'Podniesienie ciśnienia w Dolinie Marinera do 1000 Pa', 'PRESSURE_PA',    600,   1000, 5000000.00, '2027-12-31', 'IN_PROGRESS'),
+    (3, 2, 'Zwiększenie udziału O2 w Kraterze Gale do 5%',          'OXYGEN_PERCENT',   0.15,  5, 2500000.00, '2028-06-30', 'PROPOSED'),
+    (2, 3, 'Ogrzanie Równiny Utopia o 10°C',                        'TEMPERATURE_C',  -63,   -53, 8000000.00, '2026-12-31', 'ABORTED');

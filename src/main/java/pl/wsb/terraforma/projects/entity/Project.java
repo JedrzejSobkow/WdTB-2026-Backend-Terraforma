@@ -7,8 +7,14 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import pl.wsb.terraforma.account.domain.UserAccount;
+import pl.wsb.terraforma.territory.entity.Zone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -20,6 +26,14 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "zone_id", nullable = false)
+    private Zone zone;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "manager_id", nullable = false)
+    private UserAccount manager;
 
     @Column(name = "name", nullable = false, length = 150)
     private String name;
@@ -40,8 +54,10 @@ public class Project {
     protected Project() {
     }
 
-    public Project(String name, ProjectTarget target, BigDecimal energyBudgetKwh,
+    public Project(Zone zone, UserAccount manager, String name, ProjectTarget target, BigDecimal energyBudgetKwh,
                    LocalDate deadline, ProjectStatus status) {
+        this.zone = zone;
+        this.manager = manager;
         this.name = name;
         this.target = target;
         this.energyBudgetKwh = energyBudgetKwh;
@@ -50,6 +66,8 @@ public class Project {
     }
 
     public Long getId() { return id; }
+    public Zone getZone() { return zone; }
+    public UserAccount getManager() { return manager; }
     public String getName() { return name; }
     public ProjectTarget getTarget() { return target; }
     public BigDecimal getEnergyBudgetKwh() { return energyBudgetKwh; }
